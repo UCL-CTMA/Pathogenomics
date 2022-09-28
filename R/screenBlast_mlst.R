@@ -17,7 +17,7 @@
 
 screen_Blast_mlst <- function (file_strains, dir_querry,path_blastn,path_profile)
 {
-  profile <- read.table(file = path_profile,sep = "\t",header = T)
+  profile <- read.table(file = path_profile,header = T)
   querry <- list.files(path = dir_querry,pattern = ".fas",full.names = T)
   querry  <- readDNAStringSet(querry)
   writeXStringSet(x = querry,filepath = "allgenes.fasta")
@@ -60,6 +60,8 @@ screen_Blast_mlst <- function (file_strains, dir_querry,path_blastn,path_profile
     return(blastvector)
   }
   else{warning("error : No hit with blast")
-    return('')}
+    vec= NA
+    names(vec) = "ST"
+    return(vec)}
 }
 
