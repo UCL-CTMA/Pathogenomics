@@ -1,16 +1,16 @@
 #' Title
 #'
-#' @param genomePath
-#' @param genepath
 #' @param lengthconf
 #' @param identconf
 #' @param offset
+#' @param file_strains
+#' @param file_querry
 #'
 #' @return
-#' @export
+#' @export extract_closest
 #'
 #' @examples
-extract.closest <- function(file_strains,file_querry,lengthconf = 95, identconf =95,offset=0 )
+extract_closest <- function(file_strains,file_querry,lengthconf = 95, identconf =95,offset=0 )
 {
   library(Biostrings)
   myarg <-  paste0(" -subject ",file_strains," -query ",file_querry,' -out blast.txt -num_threads 8 -num_alignments 10 -outfmt "7 qacc qlen length pident qstart qend sacc sstart send "' )
