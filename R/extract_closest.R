@@ -20,7 +20,6 @@ extract.closest <- function(file_strains,file_querry,lengthconf = 95, identconf 
   file.remove("blast.txt")
   if(class(blast)=='data.frame')
   {
-    colnames(blast) <- c('querry.access','querry.length','alignment.lenght','pc.ident.','querry.start','querry.end','subject.access','subject.start','subject.end')
     colnames(blast) <- c('querry_access','querry_length','alignment_lenght','pc_ident','querry_start','querry_end','subject_access','subject_start','subject_end')
     blast <- blast %>%
       filter(alignment_lenght>=lengthconf/100*blast$querry_length) %>%
