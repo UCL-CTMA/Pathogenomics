@@ -30,17 +30,16 @@ extract_closest <- function(file_strains,file_querry,lengthconf = 95, identconf 
     # GR_disjoin <- disjoin(GR)
     if(dim(blast)[1]>=1)
     {
-      sequence <- readDNAStringSet(genomePath)
-      sequence <- sequence[names(sequence)==as.character(blast$subject.access[1])]
+      sequence <- readDNAStringSet(file_strains)
+      sequence <- sequence[names(sequence)==as.character(blast$subject_access[1])]
 
 
-      if(blast$subject.start[1]<blast$subject.end[1])
-      {sequence <- subseq(sequence,start=max(1,blast$subject.start[1]-offset),end=min(blast$subject.end[1]+offset,width(sequence)))}
+      if(blast$subject_start[1]<blast$subject_end[1])
+      {sequence <- subseq(sequence,start=max(1,blast$subject_start[1]-offset),end=min(blast$subject_end[1]+offset,width(sequence)))}
 
-      if(blast$subject.start[1]>blast$subject.end[1])
-      {sequence <- subseq(sequence,start=max(1,blast$subject.end[1]-offset),end=min(blast$subject.start[1]+offset,width(sequence)))
+      if(blast$subject_start[1]>blast$subject_end[1])
+      {sequence <- subseq(sequence,start=max(1,blast$subject_end[1]-offset),end=min(blast$subject_start[1]+offset,width(sequence)))
       sequence <- reverseComplement(sequence)}
-
     }
     else{sequence <- ''}
   }
