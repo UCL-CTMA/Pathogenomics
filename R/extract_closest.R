@@ -5,7 +5,9 @@
 #' @param offset
 #' @param file_strains
 #' @param file_querry
-#'
+#' @import Biostrings
+#' @import GenomicRanges
+#' @import dplyr
 #' @return
 #' @export extract_closest
 #'
