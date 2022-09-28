@@ -7,9 +7,9 @@
 amrfinder(file_strains, organism, path_amrfinder, element, path_database)
 }
 \arguments{
-\item{element}{}
+\item{file_strains}{}
 
-\item{path_database}{}
+\item{path_amrfinder}{the path where amrfinder is located}
 }
 \description{
 Title

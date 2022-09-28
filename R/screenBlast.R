@@ -44,5 +44,6 @@ screen_Blast <- function (file_strains, file_querry,pc_id_treshold,path_blastn)
 
     return(pc_coverage)
   }
-  else{stop("error : No hit with blast")}
+  else{warning("warning : No hit with blast")
+    return("")}
 }

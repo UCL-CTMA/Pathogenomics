@@ -1,16 +1,15 @@
 Package: Pathogenomics
 Type: Package
-Title: The
-Version: 1.0.0
+Title: What the Package Does (Title Case)
+Version: 0.2.0
 Authors@R: 
-      c(person("Jerome", "Ambroise", , "jerome.ambroise@uclouvain.be", role = c("aut")),
-        person("Maxime", "Bonjean", , "m.bonjean@uclouvain.be", role = c("aut", "cre"))
+      c(person("Jerome", "Ambroise", , "jerome.ambroise@uclouvain.be", role = c("aut", "cre")),
+        person("Maxime", "Bonjean", , "m.bonjean@uclouvain.be", role = c("aut"))
       )
-Maintainer: The package maintainer m.bonjean@uclouvain.be
-Description: the package allows the mlst typing of a strain. 
-It allows to list the virulence genes of the strain with the VFDB database and it uses the amrfinder tool for the resistance genes
-
-License: MIT
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr

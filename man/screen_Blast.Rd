@@ -7,13 +7,13 @@
 screen_Blast(file_strains, file_querry, pc_id_treshold, path_blastn)
 }
 \arguments{
+\item{file_strains}{The path of the reference sequence that you want to screen. The sequence should be a .fasta file including one or several sequences}
+
+\item{file_querry}{The path of the querry sequence. he sequence should be a .fasta file including one or several sequences}
+
 \item{pc_id_treshold}{the minimum percentage of identity obtained with Blast that should be obtained in order to consider that the query match the reference sequence}
 
-\item{subject}{The path of the reference sequence that you want to screen. The sequence should be a .fasta file including one or several sequences}
-
-\item{querry}{The path of the querry sequence. he sequence should be a .fasta file including one or several sequences}
-
-\item{path}{the directory where Blastn is located}
+\item{path_blastn}{the path where Blastn is located}
 }
 \value{
 numeric value of the percentage of the reference sequence which is covered by the querry sequence.

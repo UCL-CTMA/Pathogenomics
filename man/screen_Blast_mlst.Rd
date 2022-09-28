@@ -7,11 +7,13 @@
 screen_Blast_mlst(file_strains, dir_querry, path_blastn, path_profile)
 }
 \arguments{
-\item{path_blastn}{}
+\item{file_strains}{The path of the reference sequence that you want to screen. The sequence should be a .fasta file.}
 
-\item{subject}{The path of the reference sequence that you want to screen. The sequence should be a .fasta file including one or several sequences}
+\item{dir_querry}{the folder containing all fasta files. The sequences are available on : https://pubmlst.org/}
 
-\item{querry}{The path of the querry sequence. he sequence should be a .fasta file including one or several sequences}
+\item{path_blastn}{the path where Blastn is located}
+
+\item{path_profile}{the path to the file containing the mlst profiles}
 }
 \value{
 numeric value of the percentage of the reference sequence which is covered by the querry sequence.

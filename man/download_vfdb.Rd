@@ -6,6 +6,9 @@
 \usage{
 download_vfdb(dir_out)
 }
+\arguments{
+\item{dir_out}{}
+}
 \description{
 Title
 }
