@@ -38,5 +38,6 @@ extract_gene <- function(species,file_vfdb,dir_out)
   path <- paste0(species,"_genes.fasta")
   path <- sub(pattern = " ",replacement = "_",x = path)
   writeXStringSet(x = allsequences,filepath = paste0(dir_out,"/",path))
+  message(paste0(dir_out,"/",path))
 }
 
