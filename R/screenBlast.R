@@ -45,7 +45,7 @@ screen_Blast <- function (file_strains, file_querry,pc_id_treshold,path_blastn)
     return(pc_coverage)
   }
   else{warning("warning : No hit with blast")
-    vector = c(0)
+    vector = c(1)
     names(vector) = "nohit"
     return(vector)}
 }
