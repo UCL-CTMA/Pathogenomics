@@ -9,7 +9,8 @@ extract_closest(
   file_querry,
   lengthconf = 95,
   identconf = 95,
-  offset = 0
+  offset = 0,
+  path_blastn
 )
 }
 \description{

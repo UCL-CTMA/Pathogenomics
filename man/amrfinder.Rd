@@ -4,7 +4,14 @@
 \alias{amrfinder}
 \title{Title}
 \usage{
-amrfinder(file_strains, organism, path_amrfinder, element, path_database)
+amrfinder(
+  file_strains,
+  organism,
+  path_amrfinder,
+  element,
+  path_database,
+  thread = 4
+)
 }
 \arguments{
 \item{file_strains}{}

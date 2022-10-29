@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-species_list <- function(file_vfdb)
+species_list_vfdb <- function(file_vfdb)
 {
   sequences <- readDNAStringSet(file_vfdb)
   nom = names(sequences)

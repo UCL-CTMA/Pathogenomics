@@ -10,7 +10,7 @@
 create_envconda <- function(prefix)
 {
 
-  conda_create(envname = paste0("./",prefix))
+  conda_create(envname = paste0("./",prefix),python_version = "3.9.12")
   conda_install(envname = paste0("./",prefix),packages = "conda")
   conda_install(envname = paste0("./",prefix),packages = "blastn",channel="kantorlab")
   conda_install(envname = paste0("./",prefix),packages = "ncbi-amrfinderplus",forge = T,channel = "bioconda")

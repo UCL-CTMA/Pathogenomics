@@ -12,8 +12,8 @@
 #' @export amrfinder
 #'
 #' @examples
-amrfinder <- function(file_strains,organism,path_amrfinder,element,path_database){
-  arg = paste0("-n ",file_strains," -O ", organism," -d ",path_database ," > amrfinder.csv")
+amrfinder <- function(file_strains,organism,path_amrfinder,element,path_database,thread = 4){
+  arg = paste0("-n ",file_strains," -O ", organism," -d ",path_database ," --threads ",thread," > amrfinder.csv")
   system2(command = path_amrfinder,args = arg)
   amr = read.csv(file = "amrfinder.csv",sep = '\t',header = T)
   amr = amr %>%
