@@ -4,7 +4,13 @@
 \alias{screen_Blast}
 \title{Screen within a reference sequence the presence of a querry sequence}
 \usage{
-screen_Blast(file_strains, file_querry, pc_id_treshold, path_blastn)
+screen_Blast(
+  file_strains,
+  file_querry,
+  pc_id_treshold,
+  path_blastn,
+  threads = 4
+)
 }
 \arguments{
 \item{file_strains}{The path of the reference sequence that you want to screen. The sequence should be a .fasta file including one or several sequences}
@@ -14,6 +20,8 @@ screen_Blast(file_strains, file_querry, pc_id_treshold, path_blastn)
 \item{pc_id_treshold}{the minimum percentage of identity obtained with Blast that should be obtained in order to consider that the query match the reference sequence}
 
 \item{path_blastn}{the path where Blastn is located}
+
+\item{threads}{}
 }
 \value{
 numeric value of the percentage of the reference sequence which is covered by the querry sequence.

@@ -10,10 +10,10 @@
 create_envconda <- function(prefix)
 {
 
-  conda_create(envname = paste0("./",prefix),python_version = "3.9.12")
+  system2(command = "conda",args = paste0("create --yes -p ./",prefix," python=3.9.12"))
   conda_install(envname = paste0("./",prefix),packages = "conda")
   conda_install(envname = paste0("./",prefix),packages = "blastn",channel="kantorlab")
-  conda_install(envname = paste0("./",prefix),packages = "ncbi-amrfinderplus",forge = T,channel = "bioconda")
+  system2(command = "conda",args = paste0("install --yes -p ./",prefix," -c bioconda ncbi-amrfinderplus"))
   dir.create("amrfinder_database")
   system2(command = paste0(prefix,"/bin/amrfinder_update"),args = " -d amrfinder_database")
 
