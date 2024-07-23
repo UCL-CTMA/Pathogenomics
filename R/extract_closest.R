@@ -4,7 +4,10 @@
 #' @param identconf
 #' @param offset
 #' @param file_strains
+#' @param docker_image
+#' @param thread
 #' @param file_querry
+#'
 #' @import Biostrings
 #' @import GenomicRanges
 #' @import dplyr
@@ -12,11 +15,11 @@
 #' @export extract_closest
 #'
 #' @examples
-extract_closest <- function(file_strains,file_querry,lengthconf = 95, identconf =95,offset=0, path_blastn)
+extract_closest <- function(file_strains,file_querry,lengthconf = 95, identconf =95,offset=0, docker_image = "staphb/blast:2.15.0",thread= 4)
 {
-  library(Biostrings)
-  myarg <-  paste0(" -subject ",file_strains," -query ",file_querry,' -out blast.txt -num_threads 8 -num_alignments 10 -outfmt "7 qacc qlen length pident qstart qend sacc sstart send "' )
-  system2(command = path_blastn, args = myarg)
+  myarg <- paste0('run --rm -v ./:/mount_p --cpus=',thread,' ',docker_image,' sh -c "blastn -subject /mount_p/',file_strains,' -query /mount_p/',file_querry,' -out /mount_p/blast.txt -outfmt \\"7 qacc qlen length pident qstart qend sacc sstart send \\""')
+  system2(command='docker',args=myarg)
+
 
   blast <- try(read.table('blast.txt', comment.char = '#'),silent=T)
   file.remove("blast.txt")

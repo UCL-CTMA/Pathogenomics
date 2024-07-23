@@ -5,8 +5,9 @@
 #'
 #' @param file_strains The path of the reference sequence that you want to screen. The sequence should be a .fasta file including one or several sequences
 #' @param file_querry The path of the querry sequence. he sequence should be a .fasta file including one or several sequences
+#' @param docker_image
 #' @param pc_id_treshold the minimum percentage of identity obtained with Blast that should be obtained in order to consider that the query match the reference sequence
-#' @param path_blastn the path where Blastn is located
+#' @param thread
 #'
 #' @return numeric value of the percentage of the reference sequence which is covered by the querry sequence.
 #' @import Biostrings
@@ -15,10 +16,11 @@
 #' @import dplyr
 #' @export
 
-screen_Blast <- function (file_strains, file_querry,pc_id_treshold,path_blastn)
+screen_Blast <- function (file_strains, file_querry,pc_id_treshold,docker_image = "staphb/blast:2.15.0",thread=4)
 {
-  myarg <- paste0(" -subject ",file_strains," -query ",file_querry," -out blast.txt  -outfmt \"6 qacc qlen length qstart qend pident sacc \"")
-  system2(command = path_blastn, args = myarg)
+  myarg <- paste0('run --rm -v ./:/mount_p --cpus=',thread,' ',docker_image,' sh -c "blastn -subject /mount_p/',file_strains,' -query /mount_p/',file_querry,' -out /mount_p/blast.txt -outfmt \\"6 qacc qlen length qstart qend pident sacc \\""')
+  system2(command='docker',args=myarg)
+
   blast <- try(read.table("blast.txt"), silent = T)
   file.remove("blast.txt")
   if (class(blast) == "data.frame")

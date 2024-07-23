@@ -1,10 +1,10 @@
 #' Title
 #'
 #' @param organism
-#' @param path_amrfinder the path where amrfinder is located
 #' @param element
-#' @param path_database
 #' @param file_strains
+#' @param docker_image
+#' @param thread
 #'
 #' @import dplyr
 #' @import tidyr
@@ -12,9 +12,11 @@
 #' @export amrfinder
 #'
 #' @examples
-amrfinder <- function(file_strains,organism,path_amrfinder,element,path_database,thread = 4){
-  arg = paste0("-n ",file_strains," -O ", organism," -d ",path_database ," --threads ",thread," > amrfinder.csv")
-  system2(command = path_amrfinder,args = arg)
+amrfinder <- function(file_strains,organism,element,docker_image = "staphb/ncbi-amrfinderplus:3.12.8-2024-05-02.2",thread = 4){
+  myarg <- paste0('run --rm -v ./:/mount_p --cpus=',thread,' ',docker_image,' sh -c "amrfinder -n /mount_p/',file_strains,' -O ', organism,' -d ../amrfinder/data/latest --threads ',thread,' > /mount_p/amrfinder.csv"')
+  myarg
+  system2(command='docker',args=myarg)
+
   amr = read.csv(file = "amrfinder.csv",sep = '\t',header = T)
   amr = amr %>%
     select(Gene.symbol,Element.subtype,Class) %>%

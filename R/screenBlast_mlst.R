@@ -5,25 +5,27 @@
 #'
 #' @param file_strains The path of the reference sequence that you want to screen. The sequence should be a .fasta file.
 #' @param dir_querry the folder containing all fasta files. The sequences are available on : https://pubmlst.org/
+#' @param docker_image
 #' @param path_profile the path to the file containing the mlst profiles
-#' @param path_blastn the path where Blastn is located
+#' @param thread
 #'
 #' @return numeric value of the percentage of the reference sequence which is covered by the querry sequence.
 #' @import Biostrings
 #' @import GenomicRanges
 #' @import IRanges
 #' @import dplyr
+#' @import tidyr
 #' @export screen_Blast_mlst
 
-screen_Blast_mlst <- function (file_strains, dir_querry,path_blastn,path_profile)
+screen_Blast_mlst <- function (file_strains, dir_querry,docker_image = "staphb/blast:2.15.0",path_profile,thread=4)
 {
   profile <- read.table(file = path_profile,header = T)
   querry <- list.files(path = dir_querry,pattern = ".fas",full.names = T)
   querry  <- readDNAStringSet(querry)
   writeXStringSet(x = querry,filepath = "allgenes.fasta")
   querry <- "allgenes.fasta"
-  myarg <- paste0(" -subject ",file_strains," -query ",querry," -out blast.txt  -outfmt \"6 qacc qlen length qstart qend pident sacc \"")
-  system2(command = path_blastn, args = myarg)
+  myarg <- paste0('run --rm -v ./:/mount_p --cpus=',thread,' ',docker_image,' sh -c "blastn -subject /mount_p/',file_strains,' -query /mount_p/',querry,' -out /mount_p/blast.txt -outfmt \\"6 qacc qlen length qstart qend pident sacc \\""')
+  system2(command = "docker", args = myarg)
   file.remove("allgenes.fasta")
   blast <- try(read.table("blast.txt"), silent = T)
   file.remove("blast.txt")
@@ -64,4 +66,5 @@ screen_Blast_mlst <- function (file_strains, dir_querry,path_blastn,path_profile
     names(vec) = "ST"
     return(vec)}
 }
+
 
