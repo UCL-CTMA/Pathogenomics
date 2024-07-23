@@ -8,8 +8,8 @@ screen_Blast(
   file_strains,
   file_querry,
   pc_id_treshold,
-  path_blastn,
-  threads = 4
+  docker_image = "staphb/blast:2.15.0",
+  thread = 4
 )
 }
 \arguments{
@@ -19,9 +19,7 @@ screen_Blast(
 
 \item{pc_id_treshold}{the minimum percentage of identity obtained with Blast that should be obtained in order to consider that the query match the reference sequence}
 
-\item{path_blastn}{the path where Blastn is located}
-
-\item{threads}{}
+\item{thread}{}
 }
 \value{
 numeric value of the percentage of the reference sequence which is covered by the querry sequence.

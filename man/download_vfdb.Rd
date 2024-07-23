@@ -4,7 +4,7 @@
 \alias{download_vfdb}
 \title{Title}
 \usage{
-download_vfdb(dir_out)
+download_vfdb(dir_out, dataset = "core")
 }
 \arguments{
 \item{dir_out}{}

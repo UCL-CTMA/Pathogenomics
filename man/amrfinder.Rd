@@ -7,16 +7,13 @@
 amrfinder(
   file_strains,
   organism,
-  path_amrfinder,
   element,
-  path_database,
+  docker_image = "staphb/ncbi-amrfinderplus:3.12.8-2024-05-02.2",
   thread = 4
 )
 }
 \arguments{
-\item{file_strains}{}
-
-\item{path_amrfinder}{the path where amrfinder is located}
+\item{thread}{}
 }
 \description{
 Title

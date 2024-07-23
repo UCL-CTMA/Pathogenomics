@@ -10,8 +10,12 @@ extract_closest(
   lengthconf = 95,
   identconf = 95,
   offset = 0,
-  path_blastn
+  docker_image = "staphb/blast:2.15.0",
+  thread = 4
 )
+}
+\arguments{
+\item{file_querry}{}
 }
 \description{
 Title

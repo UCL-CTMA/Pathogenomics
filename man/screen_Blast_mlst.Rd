@@ -7,9 +7,9 @@
 screen_Blast_mlst(
   file_strains,
   dir_querry,
-  path_blastn,
+  docker_image = "staphb/blast:2.15.0",
   path_profile,
-  threads = 4
+  thread = 4
 )
 }
 \arguments{
@@ -17,11 +17,9 @@ screen_Blast_mlst(
 
 \item{dir_querry}{the folder containing all fasta files. The sequences are available on : https://pubmlst.org/}
 
-\item{path_blastn}{the path where Blastn is located}
-
 \item{path_profile}{the path to the file containing the mlst profiles}
 
-\item{threads}{}
+\item{thread}{}
 }
 \value{
 numeric value of the percentage of the reference sequence which is covered by the querry sequence.
